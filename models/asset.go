@@ -2,7 +2,7 @@ package models
 
 import "encoding/json"
 
-// Asset defines asset data models
+// Asset defines asset data models.
 type Asset struct {
 	ID       string  `json:"id,omitempty"`
 	SKU      string   `json:"sku,omitempty"`
@@ -17,6 +17,7 @@ type Asset struct {
 	Tags     []string `json:"tags,omitempty" metadata:",optional"`
 }
 
+// Encode serializes the Asset model.
 func (m Asset) Encode() []byte {
 	data, err := json.Marshal(m); if err != nil {
 		return nil
@@ -24,6 +25,7 @@ func (m Asset) Encode() []byte {
 	return data
 }
 
+// Decode deserializes the Asset model.
 func (m Asset) Decode(b []byte) (*Asset, error) {
 	err := json.Unmarshal(b, &m)
 	return &m, err
