@@ -6,14 +6,15 @@ import (
 	"github.com/timoth-y/chainmetric-core/models"
 )
 
-// DeviceUpdateRequest defines update request for models.Device
+// DeviceUpdateRequest defines update request for models.Device.
 type DeviceUpdateRequest struct {
-	Name     *string             `json:"name,omitempty"`
-	Profile  *string             `json:"profile,omitempty"`
-	Supports models.Metrics     `json:"supports,omitempty"`
-	Holder   *string             `json:"holder,omitempty"`
-	State    *models.DeviceState `json:"state,omitempty"`
-	Location *string             `json:"location,omitempty"`
+	Name     *string                `json:"name,omitempty"`
+	Profile  *string                `json:"profile,omitempty"`
+	Supports models.Metrics         `json:"supports,omitempty"`
+	Holder   *string                `json:"holder,omitempty"`
+	State    *models.DeviceState    `json:"state,omitempty"`
+	Location *string                `json:"location,omitempty"`
+	Commands []models.DeviceCommand `json:"location,omitempty"`
 }
 
 // Update updates models.Device
@@ -41,16 +42,20 @@ func (u *DeviceUpdateRequest) Update(device *models.Device) {
 	if u.Location != nil {
 		device.Location = *u.Location
 	}
+
+	if len(u.Commands) != 0 {
+		device.Commands = append(device.Commands, u.Commands...)
+	}
 }
 
-func (m DeviceUpdateRequest) Encode() []byte {
-	data, err := json.Marshal(m); if err != nil {
+func (u DeviceUpdateRequest) Encode() []byte {
+	data, err := json.Marshal(u); if err != nil {
 		return nil
 	}
 	return data
 }
 
-func (m DeviceUpdateRequest) Decode(b []byte) (*DeviceUpdateRequest, error) {
-	err := json.Unmarshal(b, &m)
-	return &m, err
+func (u DeviceUpdateRequest) Decode(b []byte) (*DeviceUpdateRequest, error) {
+	err := json.Unmarshal(b, &u)
+	return &u, err
 }
