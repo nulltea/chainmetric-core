@@ -3,6 +3,8 @@ package requests
 import (
 	"encoding/json"
 
+	"github.com/pkg/errors"
+
 	"github.com/timoth-y/chainmetric-core/models"
 )
 
@@ -14,13 +16,6 @@ type DeviceUpdateRequest struct {
 	Holder   *string                `json:"holder,omitempty"`
 	State    *models.DeviceState    `json:"state,omitempty"`
 	Location *string                `json:"location,omitempty"`
-}
-
-// DeviceUpdateRequest defines request for models.DeviceCommand execution.
-type DeviceCommandRequest struct {
-	DeviceID string               `json:"device_id"`
-	Command  models.DeviceCommand `json:"command"`
-	Args     []interface{}        `json:"args,omitempty"`
 }
 
 // Update updates models.Device
@@ -50,6 +45,7 @@ func (u *DeviceUpdateRequest) Update(device *models.Device) {
 	}
 }
 
+// Encode serializes DeviceUpdateRequest model.
 func (u DeviceUpdateRequest) Encode() []byte {
 	data, err := json.Marshal(u); if err != nil {
 		return nil
@@ -57,7 +53,46 @@ func (u DeviceUpdateRequest) Encode() []byte {
 	return data
 }
 
+// Decode deserializes DeviceUpdateRequest model.
 func (u DeviceUpdateRequest) Decode(b []byte) (*DeviceUpdateRequest, error) {
 	err := json.Unmarshal(b, &u)
 	return &u, err
+}
+
+// DeviceUpdateRequest defines request for models.DeviceCommand execution.
+type DeviceCommandRequest struct {
+	DeviceID string               `json:"device_id"`
+	Command  models.DeviceCommand `json:"command"`
+	Args     []interface{}        `json:"args,omitempty"`
+}
+
+// Encode serialises DeviceCommandRequest model.
+func (c DeviceCommandRequest) Encode() []byte {
+	data, err := json.Marshal(c); if err != nil {
+		return nil
+	}
+	return data
+}
+
+// Decode deserializes DeviceCommandRequest model.
+func (c DeviceCommandRequest) Decode(b []byte) (*DeviceCommandRequest, error) {
+	err := json.Unmarshal(b, &c)
+	return &c, err
+}
+
+// Validate validates DeviceCommandRequest model.
+func (c DeviceCommandRequest) Validate() error {
+	if len(c.DeviceID) == 0 {
+		return errors.New("device id is required and must be provided")
+	}
+
+	switch c.Command {
+	case models.DevicePauseCmd,
+		models.DeviceResumeCmd,
+		models.DevicePairingCmd:
+	default:
+		return errors.Errorf("command '%s' is not supported", c.Command)
+	}
+
+	return nil
 }

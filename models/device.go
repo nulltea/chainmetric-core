@@ -29,7 +29,7 @@ func (m Device) Encode() []byte {
 	return data
 }
 
-// Decode serializes the Device model.
+// Decode deserializes the Device model.
 func (m Device) Decode(b []byte) (*Device, error) {
 	err := json.Unmarshal(b, &m)
 	return &m, err
