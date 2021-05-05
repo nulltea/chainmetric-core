@@ -82,7 +82,7 @@ const (
 type DeviceCommandLogEntry struct {
 	DeviceID  string              `json:"device_id"`
 	Command   DeviceCommand       `json:"command"`
-	Args      DeviceCommand       `json:"args"`
+	Args      []interface{}       `json:"args"`
 	Status    DeviceCommandStatus `json:"status"`
 	Error     string              `json:"err"`
 	Timestamp time.Time           `json:"timestamp"`
