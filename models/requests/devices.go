@@ -14,7 +14,13 @@ type DeviceUpdateRequest struct {
 	Holder   *string                `json:"holder,omitempty"`
 	State    *models.DeviceState    `json:"state,omitempty"`
 	Location *string                `json:"location,omitempty"`
-	Commands []models.DeviceCommand `json:"location,omitempty"`
+}
+
+// DeviceUpdateRequest defines request for models.DeviceCommand execution.
+type DeviceCommandRequest struct {
+	DeviceID string               `json:"device_id"`
+	Command  models.DeviceCommand `json:"command"`
+	Args     []interface{}        `json:"args,omitempty"`
 }
 
 // Update updates models.Device
@@ -41,10 +47,6 @@ func (u *DeviceUpdateRequest) Update(device *models.Device) {
 
 	if u.Location != nil {
 		device.Location = *u.Location
-	}
-
-	if len(u.Commands) != 0 {
-		device.Commands = append(device.Commands, u.Commands...)
 	}
 }
 

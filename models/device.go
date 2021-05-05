@@ -18,19 +18,31 @@ type Device struct {
 	Holder   string          `json:"holder"`
 	State    DeviceState     `json:"state,omitempty" metadata:",optional"`
 	Location string          `json:"location"`
-	Commands []DeviceCommand `json:"commands"`
 }
 
 // DeviceState defines Device states enum.
 type DeviceState string
 
+var (
+	// DeviceOnline defines Device "online" state.
+	DeviceOnline DeviceState = "online"
+	// DeviceOffline defines Device "offline" state.
+	DeviceOffline DeviceState = "offline"
+	// DevicePaused defines Device "paused" state.
+	DevicePaused DeviceState = "paused"
+)
+
+
 // DeviceCommand defines Device commands enum.
 type DeviceCommand string
 
 const (
-	Pause DeviceCommand = "pause"
-	Resume DeviceCommand = "resume"
-	PairBluetooth DeviceCommand = "ble_pair"
+	// DevicePauseCmd defines DeviceCommand to "pause" Device.
+	DevicePauseCmd DeviceCommand = "pause"
+	// DevicePauseCmd defines DeviceCommand to "pause" Device.
+	DeviceResumeCmd DeviceCommand = "resume"
+	// DevicePairingCmd defines DeviceCommand to pair Device via Bluetooth.
+	DevicePairingCmd DeviceCommand = "ble_pair"
 )
 
 // Encode serializes the Device model.
