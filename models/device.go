@@ -52,7 +52,6 @@ func (m *Device) Validate() error {
 	return nil
 }
 
-
 // DeviceState defines Device states enum.
 type DeviceState string
 
@@ -64,7 +63,6 @@ var (
 	// DevicePaused defines Device "paused" state.
 	DevicePaused DeviceState = "paused"
 )
-
 
 // DeviceCommand defines Device commands enum.
 type DeviceCommand string

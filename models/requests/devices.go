@@ -61,9 +61,16 @@ func (u DeviceUpdateRequest) Decode(b []byte) (*DeviceUpdateRequest, error) {
 
 // DeviceUpdateRequest defines request for models.DeviceCommand execution.
 type DeviceCommandRequest struct {
-	DeviceID string               `json:"device_id"`
-	Command  models.DeviceCommand `json:"command"`
-	Args     []interface{}        `json:"args,omitempty"`
+	DeviceID  string               `json:"device_id"`
+	Command   models.DeviceCommand `json:"command"`
+	Args      []interface{}        `json:"args,omitempty"`
+}
+
+// DeviceCommandEventPayload embeds DeviceCommandRequest with execution log entry id.
+// so that it could be passed internally between Smart Contract and device via event.
+type DeviceCommandEventPayload struct {
+	ID string `json:"id"`
+	DeviceCommandRequest
 }
 
 // Encode serialises DeviceCommandRequest model.
