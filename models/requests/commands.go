@@ -76,14 +76,20 @@ type DeviceCommandResultsSubmitRequest struct {
 	Timestamp time.Time                  `json:"timestamp"`
 }
 
-// Validate validates DeviceCommandResultsSubmitRequest model.
-func (c DeviceCommandResultsSubmitRequest) Validate() error {
+// Apply validates and applies DeviceCommandResultsSubmitRequest on models.DeviceCommandLogEntry record.
+func (c DeviceCommandResultsSubmitRequest) Apply(entry *models.DeviceCommandLogEntry) error {
 	switch c.Status {
 	case models.DeviceCmdCompleted,
 		models.DeviceCmdProcessing,
 		models.DeviceCmdFailed:
 	default:
 		return errors.Errorf("command status '%s' is unknown", c.Status)
+	}
+
+	entry.Status = c.Status
+	entry.Timestamp = c.Timestamp
+	if entry.Status == models.DeviceCmdFailed && c.Error != nil && len(*c.Error) != 0 {
+		entry.Error = *c.Error
 	}
 
 	return nil
