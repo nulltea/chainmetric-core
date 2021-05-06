@@ -23,7 +23,7 @@ type DeviceCommandLogEntry struct {
 	Command   DeviceCommand       `json:"command"`
 	Args      []interface{}       `json:"args"`
 	Status    DeviceCommandStatus `json:"status"`
-	Error     string              `json:"err"`
+	Error     string              `json:"error"`
 	Timestamp time.Time           `json:"timestamp"`
 }
 
