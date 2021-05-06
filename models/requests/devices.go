@@ -87,6 +87,20 @@ func (c DeviceCommandRequest) Decode(b []byte) (*DeviceCommandRequest, error) {
 	return &c, err
 }
 
+// Encode serialises DeviceCommandEventPayload model.
+func (c DeviceCommandEventPayload) Encode() []byte {
+	data, err := json.Marshal(c); if err != nil {
+		return nil
+	}
+	return data
+}
+
+// Decode deserializes DeviceCommandEventPayload model.
+func (c DeviceCommandEventPayload) Decode(b []byte) (*DeviceCommandEventPayload, error) {
+	err := json.Unmarshal(b, &c)
+	return &c, err
+}
+
 // Validate validates DeviceCommandRequest model.
 func (c DeviceCommandRequest) Validate() error {
 	if len(c.DeviceID) == 0 {
