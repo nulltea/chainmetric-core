@@ -2,7 +2,7 @@ package metrics
 
 import "github.com/timoth-y/chainmetric-core/models"
 
-var (
+const (
 	Temperature               models.Metric = "temp"
 	Humidity                  models.Metric = "hdt"
 	Luminosity                models.Metric = "lux"

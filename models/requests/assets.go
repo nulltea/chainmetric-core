@@ -7,6 +7,7 @@ import (
 	"github.com/timoth-y/chainmetric-core/utils"
 )
 
+// AssetsQuery defines the structure of query for models.Asset.
 type AssetsQuery struct {
 	IDs      []string `json:"type,omitempty"`
 	Type     *string  `json:"type,omitempty"`
@@ -18,6 +19,7 @@ type AssetsQuery struct {
 	ScrollID string   `json:"scroll_id,omitempty"`
 }
 
+// Satisfies checks whether the models.Asset satisfies given AssetsQuery.
 func (q *AssetsQuery) Satisfies(asset *models.Asset) bool {
 	if len(q.IDs) != 0 && !utils.ContainsString(asset.ID, q.IDs) {
 		return false
@@ -41,6 +43,7 @@ func (q *AssetsQuery) Satisfies(asset *models.Asset) bool {
 	return true
 }
 
+// Decode deserializes AssetsQuery model.
 func (m AssetsQuery) Encode() []byte {
 	data, err := json.Marshal(m); if err != nil {
 		return nil
@@ -48,6 +51,7 @@ func (m AssetsQuery) Encode() []byte {
 	return data
 }
 
+// Decode deserializes AssetsQuery model.
 func (m AssetsQuery) Decode(b []byte) (*AssetsQuery, error) {
 	err := json.Unmarshal(b, &m)
 	return &m, err
