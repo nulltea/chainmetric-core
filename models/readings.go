@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// MetricReadings defines data models for readings from sensors
+// MetricReadings defines data models for readings from sensors.
 type MetricReadings struct {
 	ID        string                 `json:"id"`
 	AssetID   string                 `json:"asset_id"`
@@ -14,7 +14,7 @@ type MetricReadings struct {
 	Timestamp time.Time              `json:"timestamp"`
 	Values    map[Metric]float64     `json:"values"`
 }
-
+// Encode serializes the MetricReadings model.
 func (m MetricReadings) Encode() []byte {
 	data, err := json.Marshal(m); if err != nil {
 		return nil
@@ -22,6 +22,7 @@ func (m MetricReadings) Encode() []byte {
 	return data
 }
 
+// Decode deserializes the MetricReadings model.
 func (m MetricReadings) Decode(b []byte) (*MetricReadings, error) {
 	err := json.Unmarshal(b, &m)
 	return &m, err
