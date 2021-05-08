@@ -8,12 +8,12 @@ import (
 
 // DeviceUpdateRequest defines update request for models.Device.
 type DeviceUpdateRequest struct {
-	Name     *string                `json:"name,omitempty"`
-	Profile  *string                `json:"profile,omitempty"`
-	Supports models.Metrics         `json:"supports,omitempty"`
-	Holder   *string                `json:"holder,omitempty"`
-	State    *models.DeviceState    `json:"state,omitempty"`
-	Location *string                `json:"location,omitempty"`
+	Name     *string             `json:"name,omitempty"`
+	Profile  *string             `json:"profile,omitempty"`
+	Supports models.Metrics      `json:"supports,omitempty"`
+	Holder   *string             `json:"holder,omitempty"`
+	State    *models.DeviceState `json:"state,omitempty"`
+	Location *models.Location    `json:"location,omitempty"`
 }
 
 // Update updates models.Device
