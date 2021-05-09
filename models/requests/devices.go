@@ -9,6 +9,8 @@ import (
 // DeviceUpdateRequest defines update request for models.Device.
 type DeviceUpdateRequest struct {
 	Name     *string             `json:"name,omitempty"`
+	IP       *string              `json:"ip"`
+	Hostname *string              `json:"hostname"`
 	Profile  *string             `json:"profile,omitempty"`
 	Supports models.Metrics      `json:"supports,omitempty"`
 	Holder   *string             `json:"holder,omitempty"`
@@ -20,6 +22,14 @@ type DeviceUpdateRequest struct {
 func (u *DeviceUpdateRequest) Update(device *models.Device) {
 	if u.Name != nil {
 		device.Name = *u.Name
+	}
+
+	if u.IP != nil {
+		device.IP = *u.IP
+	}
+
+	if u.Hostname != nil {
+		device.Hostname = *u.Hostname
 	}
 
 	if u.Profile != nil {
