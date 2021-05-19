@@ -73,7 +73,7 @@ type DevicesQuery struct {
 	Supports models.Metrics      `json:"supports"`
 	Holder   *string             `json:"holder,omitempty"`
 	State    *models.DeviceState `json:"state,omitempty"`
-	Location *models.Location    `json:"location,omitempty"`
+	Location *LocationQuery      `json:"location,omitempty"`
 }
 
 // Satisfies checks whether the models.Device satisfies given DevicesQuery.
@@ -84,7 +84,7 @@ func (q *DevicesQuery) Satisfies(dev *models.Device) bool {
 	if q.Holder != nil && dev.Holder != *q.Holder {
 		return false
 	}
-	if q.Location != nil && dev.Location != *q.Location {
+	if q.Location != nil && dev.Location.IsNearBy(q.Location.GeoPoint, q.Location.Distance) {
 		return false
 	}
 	if q.State != nil && dev.State != *q.State {
