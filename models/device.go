@@ -17,7 +17,7 @@ type Device struct {
 	Supports Metrics     `json:"supports"`
 	Holder   string      `json:"holder"`
 	State    DeviceState `json:"state,omitempty" metadata:",optional"`
-	Location string      `json:"location"`
+	Location Location    `json:"location,omitempty" metadata:",optional"`
 }
 
 // Encode serializes the Device model.

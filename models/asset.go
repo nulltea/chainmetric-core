@@ -4,7 +4,7 @@ import "encoding/json"
 
 // Asset defines asset data models.
 type Asset struct {
-	ID       string  `json:"id,omitempty"`
+	ID       string   `json:"id,omitempty"`
 	SKU      string   `json:"sku,omitempty"`
 	Name     string   `json:"name,omitempty"`
 	Type     string   `json:"type,omitempty"`
@@ -13,7 +13,7 @@ type Asset struct {
 	Amount   int      `json:"amount,omitempty"`
 	Holder   string   `json:"holder,omitempty"`
 	State    string   `json:"state,omitempty" metadata:",optional"`
-	Location string   `json:"location,omitempty"`
+	Location Location `json:"location,omitempty"`
 	Tags     []string `json:"tags,omitempty" metadata:",optional"`
 }
 
