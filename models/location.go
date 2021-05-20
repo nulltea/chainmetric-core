@@ -6,9 +6,9 @@ import (
 
 // Location defines the geospatial location data model.
 type Location struct {
-	Name      string
-	Latitude  float64
-	Longitude float64
+	Name      string `json:"name"`
+	Latitude  float64 `json:"latitude"`
+	Longitude float64 `json:"longitude"`
 }
 
 // IsNearBy determines whether two geo points is located within `d` distance radius (m).
