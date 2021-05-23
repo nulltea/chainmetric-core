@@ -11,7 +11,7 @@ type DeviceCommand string
 const (
 	// DevicePauseCmd defines DeviceCommand to "pause" Device.
 	DevicePauseCmd DeviceCommand = "pause"
-	// DevicePauseCmd defines DeviceCommand to "pause" Device.
+	// DeviceResumeCmd defines DeviceCommand to "pause" Device.
 	DeviceResumeCmd DeviceCommand = "resume"
 	// DevicePairingCmd defines DeviceCommand to pair Device via Bluetooth.
 	DevicePairingCmd DeviceCommand = "ble_pair"

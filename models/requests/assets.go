@@ -43,7 +43,7 @@ func (q *AssetsQuery) Satisfies(asset *models.Asset) bool {
 	return true
 }
 
-// Decode deserializes DevicesQuery model.
+// Encode deserializes DevicesQuery model.
 func (q AssetsQuery) Encode() []byte {
 	data, err := json.Marshal(q); if err != nil {
 		return nil

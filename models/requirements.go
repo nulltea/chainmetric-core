@@ -14,7 +14,7 @@ type Requirement struct {
 // RequirementsMap represents map with Metric key and corresponding Requirement value.
 type RequirementsMap map[Metric]Requirement
 
-// Requirement defines requirements data models.
+// Requirements defines requirements data models.
 type Requirements struct {
 	ID      string          `json:"id,omitempty"`
 	AssetID string          `json:"asset_id,omitempty"`
@@ -36,7 +36,7 @@ func (m Requirements) Decode(b []byte) (*Requirements, error) {
 	return &m, err
 }
 
-// Decode validates the Requirements model.
+// Validate validates the Requirements model.
 func (m *Requirements) Validate() error {
 	if len(m.ID) == 0 {
 		return errors.New("id must be assigned to requirements")
