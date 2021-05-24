@@ -1,16 +1,16 @@
 package utils
 
 import (
+	"encoding/hex"
 	"hash/fnv"
-	"strconv"
 )
 
-// Hash returns the hash-sum of the given object.
-// It uses FNV32.
+// Hash calculates hash-sum for the given `value` by encrypting it with FNV-1A algorithm.
 func Hash(value string) string {
 	h := fnv.New32a()
 	h.Write([]byte(value))
-	return strconv.Itoa(int(h.Sum32()))
+
+	return hex.EncodeToString(h.Sum(nil))
 }
 
 // ContainsString checks whether the `values` string slice contains `value`.
