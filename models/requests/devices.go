@@ -94,7 +94,7 @@ func (q *DevicesQuery) Satisfies(dev *models.Device) bool {
 	return true
 }
 
-// Decode deserializes DevicesQuery model.
+// Encode deserializes DevicesQuery model.
 func (q DevicesQuery) Encode() []byte {
 	data, err := json.Marshal(q); if err != nil {
 		return nil

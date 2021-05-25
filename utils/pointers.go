@@ -32,7 +32,7 @@ func BoolPointer(val bool) *bool {
 	return &val
 }
 
-// BoolPointer returns time.Duration pointer.
+// DurationPointer returns time.Duration pointer.
 func DurationPointer(d time.Duration) *time.Duration {
 	return &d
 }

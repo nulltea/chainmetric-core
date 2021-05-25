@@ -34,7 +34,7 @@ func (m Device) Decode(b []byte) (*Device, error) {
 	return &m, err
 }
 
-// Decode validates the Device model.
+// Validate validates the Device model.
 func (m *Device) Validate() error {
 	if len(m.ID) == 0 {
 		return errors.New("id must be assigned to device")
