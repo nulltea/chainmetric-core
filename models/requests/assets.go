@@ -14,7 +14,7 @@ type AssetsQuery struct {
 	Holder   *string        `json:"holder,omitempty"`
 	State    *string        `json:"state,omitempty"`
 	Location *LocationQuery `json:"location,omitempty"`
-	Tag      *string        `json:"tag,omitempty"`
+	Tags     []string       `json:"tag,omitempty"`
 	Limit    int32          `json:"limit,omitempty"`
 	ScrollID string         `json:"scroll_id,omitempty"`
 }
@@ -36,8 +36,11 @@ func (q *AssetsQuery) Satisfies(asset *models.Asset) bool {
 	if q.State != nil && asset.State != *q.State {
 		return false
 	}
-	if q.Tag != nil && !utils.ContainsString(*q.Tag, asset.Tags) {
-		return false
+
+	for _, tag := range q.Tags {
+		if !utils.ContainsString(tag, asset.Tags) {
+			return false
+		}
 	}
 
 	return true
