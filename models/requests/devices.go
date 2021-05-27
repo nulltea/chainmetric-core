@@ -9,14 +9,15 @@ import (
 
 // DeviceUpdateRequest defines update request for models.Device.
 type DeviceUpdateRequest struct {
-	Name     *string             `json:"name,omitempty"`
-	IP       *string             `json:"ip"`
-	Hostname *string             `json:"hostname"`
-	Profile  *string             `json:"profile,omitempty"`
-	Supports models.Metrics      `json:"supports,omitempty"`
-	Holder   *string             `json:"holder,omitempty"`
-	State    *models.DeviceState `json:"state,omitempty"`
-	Location *models.Location    `json:"location,omitempty"`
+	Name     *string               `json:"name,omitempty"`
+	IP       *string               `json:"ip"`
+	Hostname *string               `json:"hostname"`
+	Profile  *string               `json:"profile,omitempty"`
+	Supports models.Metrics        `json:"supports,omitempty"`
+	Holder   *string               `json:"holder,omitempty"`
+	State    *models.DeviceState   `json:"state,omitempty"`
+	Location *models.Location      `json:"location,omitempty"`
+	Battery  *models.DeviceBattery `json:"battery,omitempty"`
 }
 
 // Update updates models.Device
@@ -51,6 +52,10 @@ func (u *DeviceUpdateRequest) Update(device *models.Device) {
 
 	if u.Location != nil {
 		device.Location = *u.Location
+	}
+
+	if u.Battery != nil {
+		device.Battery = *u.Battery
 	}
 }
 
