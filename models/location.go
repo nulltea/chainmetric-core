@@ -13,7 +13,7 @@ type Location struct {
 
 // IsNearBy determines whether two geo points is located within `d` distance radius (m).
 func (l Location) IsNearBy(l2 Location, d float64) bool {
-	return l.Distance(l2) * 1000 <= d
+	return l.Distance(l2) <= d
 }
 
 // Distance calculates distance between two geo points (in m).
