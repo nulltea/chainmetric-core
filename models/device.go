@@ -8,16 +8,17 @@ import (
 
 // Device defines device data models.
 type Device struct {
-	ID       string      `json:"id"`
-	IP       string      `json:"ip"`
-	MAC      string      `json:"mac,omitempty" metadata:",optional"`
-	Name     string      `json:"name,omitempty" metadata:",optional"`
-	Hostname string      `json:"hostname"`
-	Profile  string      `json:"profile,omitempty" metadata:",optional"`
-	Supports Metrics     `json:"supports"`
-	Holder   string      `json:"holder"`
-	State    DeviceState `json:"state,omitempty" metadata:",optional"`
-	Location Location    `json:"location,omitempty" metadata:",optional"`
+	ID       string        `json:"id"`
+	IP       string        `json:"ip"`
+	MAC      string        `json:"mac,omitempty" metadata:",optional"`
+	Name     string        `json:"name,omitempty" metadata:",optional"`
+	Hostname string        `json:"hostname"`
+	Profile  string        `json:"profile,omitempty" metadata:",optional"`
+	Supports Metrics       `json:"supports"`
+	Holder   string        `json:"holder"`
+	State    DeviceState   `json:"state,omitempty" metadata:",optional"`
+	Battery  DeviceBattery `json:"battery,omitempty" metadata:",optional"`
+	Location Location      `json:"location,omitempty" metadata:",optional"`
 }
 
 // Encode serializes the Device model.
@@ -62,3 +63,9 @@ var (
 	// DevicePaused defines Device "paused" state.
 	DevicePaused DeviceState = "paused"
 )
+
+// DeviceBattery defines Device battery and power state.
+type DeviceBattery struct {
+	Level     *int `json:"level,omitempty"`
+	PluggedIn bool `json:"plugged"`
+}
