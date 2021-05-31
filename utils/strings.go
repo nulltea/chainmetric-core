@@ -40,30 +40,14 @@ func ContainsString(value string, values []string) bool {
 
 // FormCompositeKey provides composite key for specified `objectType` by combining the given `attributes`.
 func FormCompositeKey(objectType string, attributes ...string) string {
-	var (
-		ck = objectType + compositeKeySeparator
-	)
-
-	return ck + strings.Join(attributes, compositeKeySeparator)
+	return objectType + compositeKeySeparator + strings.Join(attributes, compositeKeySeparator)
 }
 
 // SplitCompositeKey retrieves object type and attributes from `compositeKey`.
 func SplitCompositeKey(compositeKey string) (string, []string) {
-	var (
-		componentIndex = 1
-		components     []string
-	)
-
-	for i := 1; i < len(compositeKey); i++ {
-		if compositeKey[i] == compositeKeySeparatorRune {
-			components = append(components, compositeKey[componentIndex:i])
-			componentIndex = i + 1
-		}
+	if components := strings.Split(compositeKey, compositeKeySeparator); len(components) != 0 {
+		return components[0], components[1:]
 	}
 
-	if len(components) == 0 {
-		return "", nil
-	}
-
-	return components[0], components[1:]
+	return "", nil
 }
