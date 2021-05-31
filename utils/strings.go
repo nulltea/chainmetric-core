@@ -3,6 +3,7 @@ package utils
 import (
 	"encoding/hex"
 	"hash/fnv"
+	"strings"
 	"unicode/utf8"
 )
 
@@ -43,11 +44,7 @@ func FormCompositeKey(objectType string, attributes ...string) string {
 		ck = objectType + compositeKeySeparator
 	)
 
-	for _, attr := range attributes {
-		ck += attr + compositeKeySeparator
-	}
-
-	return ck
+	return ck + strings.Join(attributes, compositeKeySeparator)
 }
 
 // SplitCompositeKey retrieves object type and attributes from `compositeKey`.
