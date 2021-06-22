@@ -66,6 +66,6 @@ var (
 
 // DeviceBattery defines Device battery and power state.
 type DeviceBattery struct {
-	Level     *int `json:"level,omitempty"`
+	Level     int `json:"level"`
 	PluggedIn bool `json:"plugged"`
 }
