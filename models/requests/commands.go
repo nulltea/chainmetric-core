@@ -9,11 +9,12 @@ import (
 	"github.com/timoth-y/chainmetric-core/models"
 )
 
-// DeviceUpdateRequest defines request for models.DeviceCommand execution.
+// DeviceCommandRequest defines request for models.DeviceCommand execution.
 type DeviceCommandRequest struct {
-	DeviceID  string               `json:"device_id"`
-	Command   models.DeviceCommand `json:"command"`
-	Args      []interface{}        `json:"args,omitempty"`
+	DeviceID string               `json:"device_id"`
+	Command  models.DeviceCommand `json:"command"`
+	IssuedAt time.Time            `json:"issued_at"`
+	Args     []interface{}        `json:"args,omitempty"`
 }
 
 // DeviceCommandEventPayload embeds DeviceCommandRequest with execution log entry id.
