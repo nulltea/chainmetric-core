@@ -20,6 +20,7 @@ type Requirements struct {
 	AssetID string          `json:"asset_id,omitempty"`
 	Period  int             `json:"period,omitempty" metadata:",optional"`
 	Metrics RequirementsMap `json:"metrics,omitempty"`
+	FromOrg string          `json:"from_org"`
 }
 
 // Encode serializes the Requirements model.
